@@ -3,8 +3,8 @@
     <div class="container">
         <header class="jumbotron">
             <h3>
-                <strong> {{ currentUSer.username }}</strong> profile
-                </h3>
+                <strong> {{ currentUser.username }}</strong> profile
+            </h3>
         </header>
         <p>
             <strong>Token : </strong> {{currentUser.accessToken.substring(0, 20)}} ... 

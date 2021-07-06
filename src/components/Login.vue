@@ -1,19 +1,23 @@
 <template>
   <div class="col-md-12">
       <div class="card card-container">
-          <img  id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="" class="profile-img-card"/>
+          <img  id="profile-img" 
+                src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" 
+                alt="basic profile avatar" 
+                class="profile-img-card"/>
+
           <Form @submit.prevent="handleLogin" :validation-schema="schema">
 
               <div class="form-group">
                   <label for="username">Username</label>
                   <Field name="username" type="text" class="form-control"/>
-                  <ErrorMessage name ="username" class="error-feedback"/>
+                  <ErrorMessage name="username" class="error-feedback"/>
               </div>
 
               <div class="form-group">
                   <label for="password">Password</label>
                   <Field name="password" type="password" class="form-control"/>
-                  <ErrorMessage name ="password" class="error-feedback"/>
+                  <ErrorMessage name="password" class="error-feedback"/>
               </div>
 
               <div class="form-group">
@@ -24,7 +28,7 @@
               </div>
 
               <div class="form-group">
-                  <div v-if="message" class="alert alert-dange" role="alert"> {{ message }} </div>
+                  <div v-if="message" class="alert alert-danger" role="alert"> {{ message }} </div>
               </div>
           </Form>
       </div>
@@ -71,9 +75,9 @@
         methods: {
           handleLogin (user) {
             this.loading = true;
-            this.$store.dispatch("auth/login", user)
+            this.$store.dispatch("auth/loginAction", user)
             .then( () => {
-              this.$router.pudh("/profile");
+              this.$router.push("/profile");
             })
             .catch(err => {
               this.loading = false;
@@ -84,6 +88,38 @@
     };
 </script>
 
-<style>
+<style scoped>
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+.card-container.card {
+  max-width: 350px !important;
+  padding: 40px 40px;
+}
+
+.card {
+  background-color: #f7f7f7;
+  padding: 20px 25px 30px;
+  margin: 0 auto 25px;
+  margin-top: 50px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.profile-img-card {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 10px;
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
 
 </style>

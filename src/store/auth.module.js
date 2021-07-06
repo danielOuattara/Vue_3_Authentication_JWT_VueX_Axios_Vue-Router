@@ -1,9 +1,9 @@
 
-import AuthService from "../../services/auth.service";
+import AuthService from "./../services/auth.service";
 
 const user = JSON.parse(localStorage.getItem("user"));
 
-const initialState = user ? {status: { loggedIn : true} , user } :  {status: { loggedIn : false} , user: null }
+const initialState = user ? {status: { loggedIn : true} , user: user } :  {status: { loggedIn : false} , user: null }
 
 
 export const auth = {
@@ -71,4 +71,4 @@ export const auth = {
             state.status.loggedIn = false;
         }
     }
-}
+};

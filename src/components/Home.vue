@@ -5,7 +5,6 @@
             <h3> {{ content }}</h3>
         </header>
     </div>
-
 </template>
 
 <script>
@@ -18,15 +17,23 @@ export default {
         };
     },
 
-    mounted() {
+    // mounted() {
+    //     UserService.getPublicContent()
+    //     .then(res => {
+    //         this.content = res.data;
+    //     })
+    //     .catch(err => {
+    //         this.content = (err.response && err.response.data && err.res.data.message) || err.message || err.toString();
+    //     })
+    // },
+
+        mounted() {
         UserService.getPublicContent()
-        .then(res => {
-            this.content = res.data;
-        })
-        .catch(err => {
-            this.content = (err.response && err.response.data && err.res.data.message) || err.message || err.toString()
-        })
-    },
+        .then( 
+            response => this.content = response.data ,
+            error => this.content = (error.response && error.response.data) || error.message || error.toString()
+        );
+    }
     
 };
 </script>

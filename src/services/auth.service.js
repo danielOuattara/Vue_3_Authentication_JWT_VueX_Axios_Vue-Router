@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 
-const API_URL = "http://localhost:8080/api/auth";
+const API_URL = "http://localhost:8080/api/auth/";
 
 class AuthService  {
     
@@ -16,9 +16,9 @@ class AuthService  {
             }
             return res.data;
         })
-        .catch( err => {
-            console.log(err.message)
-        })
+        // .catch( err => {
+        //     console.log(err.message)
+        // })
     }
 
     logout() {
