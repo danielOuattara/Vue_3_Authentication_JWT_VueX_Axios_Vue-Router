@@ -11,8 +11,8 @@
                                      {{currentUser.accessToken.substr(currentUser.accessToken.length - 20)}}
         </p>
 
-        <p><strong>Id : </strong> {{ currentUSer.id }} </p>
-        <p><strong>Email : </strong> {{ currentUSer.email}} </p>
+        <p><strong>Id : </strong> {{ currentUser.id }} </p>
+        <p><strong>Email : </strong> {{ currentUser.email}} </p>
         <p><strong>Authorities : </strong></p>
         <ul>
             <li v-for="role in currentUser.roles" :key="role" > {{ role }}</li>

@@ -6,7 +6,7 @@
                 alt="basic profile avatar" 
                 class="profile-img-card"/>
 
-          <Form @submit.prevent="handleLogin" :validation-schema="schema">
+          <Form @submit="handleLogin" :validation-schema="schema">
 
               <div class="form-group">
                   <label for="username">Username</label>
@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
     import { Form, Field, ErrorMessage } from "vee-validate";
     import * as yup from "yup";
     export default {
@@ -73,9 +74,11 @@
         },
 
         methods: {
+          ...mapActions(["loginAction"]),
+
           handleLogin (user) {
             this.loading = true;
-            this.$store.dispatch("auth/loginAction", user)
+            this.$store.dispatch("loginAction", user)
             .then( () => {
               this.$router.push("/profile");
             })

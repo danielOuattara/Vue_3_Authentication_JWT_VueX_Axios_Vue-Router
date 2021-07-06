@@ -56,7 +56,7 @@
             </div>
         </nav>
 
-        <div class="cotainer">
+        <div class="container">
         <router-view/>
         </div>
     </div>
@@ -64,37 +64,40 @@
 
 
 <script>
-  export default {
-    name: "App",
+    import { mapActions } from "vuex";
+    export default {
+        name: "App",
 
-    computed: {
-        currentUser() {
-            return this.$store.state.auth.user;
+        computed: {
+            currentUser() {
+                return this.$store.state.auth.user;
+            },
+
+            showAdminBoard () {
+                if(this.currentUser && this.currentUser['roles']) {
+                    return this.currentUser['roles'].includes('ROLE_ADMIN');
+                }
+
+                return false;
+            },
+
+            showModeratorBoard () {
+                if(this.currentUser && this.currentUser['roles']) {
+                    return this.currentUser['roles'].includes('ROLE_MODERATOR');
+                }
+
+                return false;
+            },
         },
 
-        showAdminBoard () {
-            if(this.currentUSer && this.currentUser['roles']) {
-                return this.currentUser['roles'].includes('ROLE_ADMIN');
+        methods: {
+            ...mapActions(["logoutAction"]),
+
+            logout() {
+                this.$router.push("/login");
+                this.$store.dispatch("logoutAction");
             }
-
-            return false;
-        },
-
-        showModeratorBoard () {
-            if(this.currentUSer && this.currentUser['roles']) {
-                return this.currentUser['roles'].includes('ROLE_MODERATOR');
-            }
-
-            return false;
-        },
-    },
-
-    methods: {
-        logout() {
-            this.$store.dispatch("auth/logout");
-            this.$router.push("/login");
         }
-    }
 
-  }
+    }
 </script>
